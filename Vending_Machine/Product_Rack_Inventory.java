@@ -12,6 +12,7 @@ public class Product_Rack_Inventory {
     private ProductType type;
   }
 
+
   public class Rack {
     private int productId;
     private int rackNumber;
@@ -19,6 +20,7 @@ public class Product_Rack_Inventory {
     public boolean isEmpty();
   }
 
+  
   public class Inventory {
     private int noOfProducts;
     private List<Product> products;
