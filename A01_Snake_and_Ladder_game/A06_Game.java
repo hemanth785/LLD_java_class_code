@@ -10,7 +10,6 @@ public class A06_Game {
     Player winner;
 
     public Game(){
-
         initializeGame();
     }
 

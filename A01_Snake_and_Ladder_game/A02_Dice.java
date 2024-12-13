@@ -18,8 +18,8 @@ public class A02_Dice {
 
         // Random random = new Random();
         while(diceUsed<diceCount){
-           // totalSum += random.nextInt(min,max+1);
-            totalSum += ThreadLocalRandom.current().nextInt(min,max+1); //This is threadsafe
+           // totalSum += random.nextInt(min, max+1);
+            totalSum += ThreadLocalRandom.current().nextInt(min, max+1); //This is threadsafe
             diceUsed++;
         }
 

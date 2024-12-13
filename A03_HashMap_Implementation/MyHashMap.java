@@ -1,20 +1,51 @@
 package A03_HashMap_Implementation;
 
+import java.util.ArrayList;
+
 class MyHashMap<K,V> {
 
     private static final int  INITIAL_SIZE = 1<<4; //16
-    private static final int MAXIMUM_CAPACITY = 1 << 30;
+  private static final int MAXIMUM_CAPACITY = 1 << 30;
+  static class HashNode<K, V>{ //here we are mentioning K and V custom types, because we dont know what is the type of key and value we'll get
+    K key;
+    V val;
+    HashNode<K, V> next=null;
 
-    Entry[] hashTable;
+    HashNode(K key, V val){
+      this.key = key;
+      this.val = val;
+    }
+  }
 
+  /*
+   * Appraoch:
+   * - We need to use two data structures here - ArrayList and LinkedList, 
+   *      Arraylist - To store the buckets
+   *      LinkedList - To store the collision elements (Here collision is handled with)
+   * - We need to implement the hashing function, which gives the index of bucket where the data needs to be stored
+   * - At each bucket, we are storing the data in nodes (linkedList), because we might have to store multiple elements at same bucketIndex
+   */
 
-    MyHashMap(){
-        hashTable= new Entry[INITIAL_SIZE];
+  static class Map<K, V>{
+    private int numberOfBuckets, size;
+    private ArrayList<HashNode<K, V>> bucketList;
+
+    //constructor
+    Map(){
+        bucketList = new ArrayList<>();
+        numberOfBuckets = INITIAL_SIZE;
+        
+        for(int i=0; i<numberOfBuckets; i++){
+            bucketList.add(null);
+        }
     }
 
-    MyHashMap(int capacity) {
-        int tableSize = tableSizeFor(capacity);
-        hashTable= new Entry[tableSize];
+    Map(int capacity) {
+        bucketList = new ArrayList<>();
+        int numberOfBuckets = tableSizeFor(capacity);
+        for(int i=0; i<numberOfBuckets; i++){
+            bucketList.add(null);
+        }
     }
 
     //This function used to get the next 2 power number for given capacity
@@ -29,95 +60,99 @@ class MyHashMap<K,V> {
         return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
     }
 
+    //This is where we implemention our hash function
+    private int getBucketIndex(K key){
+      int index = key.hashCode() % numberOfBuckets;
 
-    class Entry<K,V>{
-
-        K key;
-        V value;
-        Entry next;
-
-        Entry(K k, V v) {
-            key = k;
-            value = v;
-        }
-
-
-        public K getKey() {
-            return key;
-        }
-
-        public void setKey(K key) {
-            this.key = key;
-        }
-
-        public V getValue() {
-            return value;
-        }
-
-        public void setValue(V value) {
-            this.value = value;
-        }
+      return index < 0 ? index * -1 : index;
     }
 
+    void put(K key, V value){
+      // 1. get the bucket index for this new key, using hash function
+      int bucketIndex = getBucketIndex(key);
+      HashNode<K, V> head = bucketList.get(bucketIndex);
 
-    public void put(K key, V value) {
-
-        int hashCode = key.hashCode() % hashTable.length;
-        Entry node = hashTable[hashCode];
-
-        if(node == null) {
-
-            Entry newNode = new Entry(key, value);
-            hashTable[hashCode] = newNode;
-        } else {
-            Entry previousNode = node;
-            while (node != null) {
-
-                if (node.key == key) {
-                    node.value = value;
-                    return;
-                }
-                previousNode = node;
-                node = node.next;
-            }
-            Entry newNode = new Entry(key,value);
-            previousNode.next = newNode;
+      // 2. Check if this key already exists in hashTable
+      HashNode<K, V> cur = head;
+      while(cur != null){
+        if(cur.key.equals(key)){
+          cur.val = value;  // if key exists, update the value for key
+          return;
         }
+        cur = cur.next;
+      }
+
+      // 3. If key does not exists, create node and add it at the head of bucket index
+      HashNode<K, V> newNode = new HashNode<>(key, value);
+      newNode.next = head;
+      bucketList.set(bucketIndex, newNode); //adding it as the head node
+      size++;
+
+      // 4. Check for the load factor, if load factor is more than threshold, we need to increase the number of buckets
+      // [ Load factor = current size of map / number of buckets ]
+      if((0.1 *size / numberOfBuckets) >= 0.8){
+        //here we need to write the logic to increate bucket size
+        System.out.println("Load factor has crossed theshold, please increase the number of buckets");
+      }
     }
 
+    V get(K key){
+      //get bucket index by executing hash function
+      int bucketIndex = getBucketIndex(key);
+      HashNode<K, V> head = bucketList.get(bucketIndex);
 
-    public V get(K key) {
-
-        int hashCode = key.hashCode() % hashTable.length;
-        Entry node = hashTable[hashCode];
-
-        while(node != null) {
-            if(node.key.equals(key)) {
-                return (V)node.value;
-            }
-            node = node.next;
+      while (head != null) {
+        if(head.key.equals(key)){
+          return head.val;
         }
-        return null;
+        head = head.next;
+      }
+
+      return null;
     }
 
+    void remove(K key){
+      //get bucket index by executing hash function
+      int bucketIndex = getBucketIndex(key);
+      HashNode<K, V> head = bucketList.get(bucketIndex);
+      HashNode<K, V> prev = null;
 
-    public static void main(String args[]) {
+      while(head != null){
+        if(head.key.equals(key)){
+          break;
+        }
+        prev = head;
+        head = head.next;
+      }
 
-        MyHashMap<Integer, String> map = new MyHashMap<>(7);
-        map.put(1, "hi");
-        map.put(2, "my");
-        map.put(3, "name");
-        map.put(4, "is");
-        map.put(5, "Shrayansh");
-        map.put(6, "how");
-        map.put(7, "are");
-        map.put(8, "you");
-        map.put(9, "friends");
-        map.put(10, "?");
+      //if key not found
+      if(head == null){
+        return;
+      }
 
-        String value = map.get(8);
-        System.out.println(value);
+      //if key found at head
+      if(prev == null){
+        bucketList.set(bucketIndex, head.next);
+      } else {
+        prev.next = head.next;
+      }
 
-
+      size--; 
     }
+  }
+
+  public static void main(String[] args) {
+    Map<String, Integer> map = new Map<>();
+    
+    map.put("Hemanth", 22);
+    map.put("Ganesh", 45);
+    map.put("Suresh", 34);
+    map.put("Shivu", 21);
+
+    System.out.println(map.get("Suresh"));
+
+    map.remove("Suresh");
+
+    System.out.println(map.get("Suresh"));
+  }
 }
