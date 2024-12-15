@@ -1,8 +1,8 @@
-package Elevator_System;
+package A09_Elevator_System;
 
 public class Building {
-  private List<Floor> floor;
-  private List<ElevatorCar> elevator; 
+  private List<Floor> floors;
+  private elevator ElevarSystem; 
 
   private static Building building = null;
   
@@ -13,3 +13,5 @@ public class Building {
       return building;
   }
 }
+
+

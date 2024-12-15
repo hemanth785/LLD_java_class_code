@@ -1,20 +1,22 @@
-package Elevator_System;
+package A09_Elevator_System;
 
-public abstract class Button {
+// << Abstract >>
+public class Button {
   private boolean status;
 
   public pressDown();
   public abstract boolean isPressed();
 }
 
-public class DoorButton extends Button {
 
+
+class DoorButton extends Button {
   public boolean isPressed() {
       // Definition
   }
 }
 
-public class HallButton extends Button  {
+class HallButton extends Button  {
   private Direction buttonSign;
 
   public boolean isPressed() {
@@ -22,7 +24,7 @@ public class HallButton extends Button  {
   }
 }
 
-public class ElevatorButton extends Button  {
+class ElevatorButton extends Button  {
   private int destinationFloorNumber;
 
   public boolean isPressed() {

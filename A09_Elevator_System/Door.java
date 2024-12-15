@@ -1,4 +1,4 @@
-package Elevator_System;
+package A09_Elevator_System;
 
 public class Door {
   private DoorState state;
@@ -6,7 +6,7 @@ public class Door {
   public boolean isOpen();
 }
 
-public class Floor {
+class Floor {
   private List<Display> display;
   private List<HallPanel> panel;
   
