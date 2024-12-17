@@ -1,4 +1,4 @@
-package Vending_Machine;
+package A10_Vending_Machine;
 
 public class Enumerations {
   // Enumerations
@@ -8,4 +8,5 @@ public class Enumerations {
     BEVERAGE,
     OTHER
   }
+
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/A00_Design_Patterns/A00_Design_Patterns.iml" filepath="$PROJECT_DIR$/A00_Design_Patterns/A00_Design_Patterns.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LLD_java_class_code.iml" filepath="$PROJECT_DIR$/LLD_java_class_code.iml" />
+    </modules>
+  </component>
+</project>
