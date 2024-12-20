@@ -1,4 +1,4 @@
-package A04_Decorator_Pattern_Pizza;
+package A00_Design_Patterns.A03_Decorator_Pattern_Pizza;
 
 
 public class Decorator {

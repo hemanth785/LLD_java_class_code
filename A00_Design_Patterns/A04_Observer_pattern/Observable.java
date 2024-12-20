@@ -1,9 +1,9 @@
-package A05_Observer_pattern;
+package A00_Design_Patterns.A04_Observer_pattern;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import A05_Observer_pattern.Observer.NotificationAlertOberver;
+import A00_Design_Patterns.A04_Observer_pattern.Observer.NotificationAlertOberver;
 
 public class Observable {
   // Interface

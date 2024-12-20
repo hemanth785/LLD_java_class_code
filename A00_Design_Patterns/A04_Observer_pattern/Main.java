@@ -1,8 +1,8 @@
-package A05_Observer_pattern;
+package A00_Design_Patterns.A04_Observer_pattern;
 
-import A05_Observer_pattern.Observable.*;
-import A05_Observer_pattern.Observer.EmailNotificationObserver;
-import A05_Observer_pattern.Observer.NotificationAlertOberver;
+import A00_Design_Patterns.A04_Observer_pattern.Observable.*;
+import A00_Design_Patterns.A04_Observer_pattern.Observer.EmailNotificationObserver;
+import A00_Design_Patterns.A04_Observer_pattern.Observer.NotificationAlertOberver;
 
 public class Main {
   public static void main(String[] args) {

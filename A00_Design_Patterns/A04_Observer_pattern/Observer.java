@@ -1,6 +1,6 @@
-package A05_Observer_pattern;
+package A00_Design_Patterns.A04_Observer_pattern;
 
-import A05_Observer_pattern.Observable.I_Observable;
+import A00_Design_Patterns.A04_Observer_pattern.Observable.I_Observable;
 
 public class Observer {
   public interface NotificationAlertOberver {
