@@ -52,9 +52,11 @@ public class TicTacToeGame {
 
             //read the user input
             System.out.print("Player:" + playerTurn.name + " Enter row,column: ");
+
             Scanner inputScanner = new Scanner(System.in);
             String s = inputScanner.nextLine();
             String[] values = s.split(",");
+            
             int inputRow = Integer.valueOf(values[0]);
             int inputColumn = Integer.valueOf(values[1]);
 

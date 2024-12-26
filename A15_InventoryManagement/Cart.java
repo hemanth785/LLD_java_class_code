@@ -1,4 +1,4 @@
-package LowLevelDesign.DesignOrderManagementSystem;
+package A15_InventoryManagement;
 
 import java.util.HashMap;
 import java.util.Map;

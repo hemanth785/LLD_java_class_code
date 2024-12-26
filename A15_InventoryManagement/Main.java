@@ -1,4 +1,4 @@
-package LowLevelDesign.DesignOrderManagementSystem;
+package A15_InventoryManagement;
 
 import java.util.ArrayList;
 import java.util.List;

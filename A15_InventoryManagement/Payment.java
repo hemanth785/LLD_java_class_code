@@ -1,4 +1,4 @@
-package LowLevelDesign.DesignOrderManagementSystem;
+package A15_InventoryManagement;
 
 
 public class Payment {
