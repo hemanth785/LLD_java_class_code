@@ -24,7 +24,7 @@ public class Observer {
     }
 
     private void sendMail(int stockCount){
-      System.out.println("Mail sent to"+ emailId);
+      System.out.println("Mail sent to"+ emailId+" with stock count: "+stockCount);
     }
     
   } 

@@ -12,7 +12,7 @@ public class Observable {
     
     public void removeOverver(NotificationAlertOberver observer);
 
-    public void notifySubscribers();
+    public void notifySubscribers(); //this is the main method, for notifying observer
 
     public void updateStockCount(int newStockAdded);
 

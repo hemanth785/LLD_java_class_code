@@ -58,7 +58,7 @@ class TransportFactory {
 
 /* 
  * This looks fine as of now, But if we need to add new type of logistics, lets say 'Air transport', 
- * Then we have to modify the code of Transport factory. t
+ * Then we have to modify the code of Transport factory.
  * -> That again voilates open closed principle
  */
 

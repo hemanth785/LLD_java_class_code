@@ -12,6 +12,7 @@ interface PaymentStrategy {
   abstract void pay(int amount);
 }
 
+
 // 2. Concrete strategy classes
 class CreditCardPaymentStrategy implements PaymentStrategy {
   CreditCard card;
